@@ -43,7 +43,9 @@ std::string team::get_name()
 float team::get_xgoals() {
     float xgoals = 0;
     for (float f : _chances)
+    {
         xgoals += f;
+    }
 
     return xgoals;
 }

@@ -19,23 +19,33 @@ int game::simulate(bool do_logs)
 
     int winner = g1 > g2 ? 1 : (g1 == g2 ? 0 : -1);
 
-    std::ofstream logs;
-    if(do_logs)
-    {
-        logs.open("logs.txt", std::fstream::out | std::fstream::app);
+    if(do_logs) write_logs(g1, g2, winner);
 
-        logs << _t1.get_name() << " scored " << g1 << " goals." << std::endl;
-        logs << _t2.get_name() << " scored " << g2 << " goals." << std::endl;
-
-        if (winner == 1)
-            logs << _t1.get_name() << " won this game." << std::endl;
-        else if (winner == -1)
-            logs << _t2.get_name() << " won this game." << std::endl;
-        else
-            logs << "The game ended in a draw." << std::endl;
-
-        logs << std::endl;
-        logs.close();
-    }
     return winner;
+}
+
+void game::write_logs(int g1, int g2, int winner)
+{
+    std::ofstream logs;
+
+    logs.open("logs.txt", std::fstream::out | std::fstream::app);
+
+    logs << _t1.get_name() << " scored " << g1 << " goals." << std::endl;
+    logs << _t2.get_name() << " scored " << g2 << " goals." << std::endl;
+
+    if (winner == 1)
+    {
+        logs << _t1.get_name() << " won this game." << std::endl;
+    }
+    else if (winner == -1)
+    {
+        logs << _t2.get_name() << " won this game." << std::endl;
+    }
+    else
+    {
+        logs << "The game ended in a draw." << std::endl;
+    }
+
+    logs << std::endl;
+    logs.close();
 }

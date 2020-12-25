@@ -2,13 +2,13 @@
 // Created by ulyss on 11/09/2020.
 //
 
-#ifndef XPOINTS_CALCULATOR_DATA_H
-#define XPOINTS_CALCULATOR_DATA_H
+#ifndef XPOINTS_CALCULATOR_SIM_DATA_H
+#define XPOINTS_CALCULATOR_SIM_DATA_H
 
 
 #include "team.h"
 
-class data
+class sim_data
 {
     private:
         team _t1;
@@ -21,10 +21,10 @@ class data
         int _nb_tries;
         bool _simulated;
     public:
-        data(team t1, team t2, int nb_tries);
+        sim_data(team t1, team t2, int nb_tries);
         void calculate_data(bool do_logs);
-        void display_data();
+        void print_data();
 };
 
 
-#endif //XPOINTS_CALCULATOR_DATA_H
+#endif //XPOINTS_CALCULATOR_SIM_DATA_H
