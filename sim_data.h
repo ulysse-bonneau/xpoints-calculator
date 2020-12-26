@@ -18,10 +18,10 @@ class sim_data
         int _wins_t1;
         int _wins_t2;
         int _draws;
-        int _nb_tries;
+        int _nb_simul;
         bool _simulated;
     public:
-        sim_data(team t1, team t2, int nb_tries);
+        sim_data(team t1, team t2, int nb_simul);
         void calculate_data(bool do_logs);
         void print_data();
 };

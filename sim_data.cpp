@@ -9,10 +9,10 @@
 
 #include <utility>
 
-sim_data::sim_data(team t1, team t2, int nb_tries):
-    _t1(std::move(t1)),
-    _t2(std::move(t2)),
-    _nb_tries(nb_tries)
+sim_data::sim_data(team t1, team t2, int nb_simul):
+        _t1(std::move(t1)),
+        _t2(std::move(t2)),
+        _nb_simul(nb_simul)
 {
     _xpoints_t1 = 0;
     _xpoints_t2 = 0;
@@ -43,7 +43,7 @@ void sim_data::calculate_data(bool do_logs)
     game g (_t1 , _t2);
 
     if(do_logs) init_logs();
-    for (int i {0}; i < _nb_tries; ++i)
+    for (int i {0}; i < _nb_simul; ++i)
     {
         if(do_logs) write_logs(i + 1);
 
@@ -62,8 +62,8 @@ void sim_data::calculate_data(bool do_logs)
         }
     }
 
-    _xpoints_t1 = (float) (_wins_t1 * 3 + _draws) / (float) _nb_tries;
-    _xpoints_t2 = (float) (_wins_t2 * 3 + _draws) / (float) _nb_tries;
+    _xpoints_t1 = (float) (_wins_t1 * 3 + _draws) / (float) _nb_simul;
+    _xpoints_t2 = (float) (_wins_t2 * 3 + _draws) / (float) _nb_simul;
     _simulated = true;
 }
 
@@ -75,7 +75,7 @@ void sim_data::print_data()
         return;
     }
     std::cout << std::endl;
-    std::cout << _nb_tries << " games have been simulated." << std::endl;
+    std::cout << _nb_simul << " games have been simulated." << std::endl;
 
     std::cout << _t1.get_name() << " won " << _wins_t1 << " games." << std::endl;
     std::cout << _t2.get_name() << " won " << _wins_t2 << " games." << std::endl;
